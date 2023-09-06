@@ -4,7 +4,7 @@ import { commentsData } from "../datas/comments";
 import { IComment } from "../interfaces/Comment";
 
 function CommentsProvider({ children }: { children: any }) {
-  const [comments, setComments] = useState<IComment[]>([commentsData[0]]);
+  const [comments, setComments] = useState<IComment[]>(commentsData);
   return (
     <CommentsContext.Provider
       value={{
