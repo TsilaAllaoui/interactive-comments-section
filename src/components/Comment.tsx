@@ -34,6 +34,25 @@ function Comment({ comment }: { comment: IComment }) {
     setComments([...tmp]);
   };
 
+  const handleDelete = () => {
+    let tmp = comments;
+    tmp.forEach((c) => {
+      if (c.id == comment.id) {
+        tmp = tmp.filter((c) => c.id != comment.id);
+      } else {
+        c.replies?.forEach((_c) => {
+          if (_c.id == comment.id) {
+            const pos = c.replies?.findIndex((a) => a.id == _c.id);
+            c.replies = c.replies?.filter((_a, i) => i != pos);
+            console.log(c.replies);
+          }
+        });
+      }
+    });
+    setComments([...tmp]);
+    setComments([...comments.filter((c) => c.id != comment.id)]);
+  };
+
   return (
     <div className="comment-container">
       <div className="comment">
@@ -52,7 +71,7 @@ function Comment({ comment }: { comment: IComment }) {
             <div id="actions">
               {comment.user.username == userName ? (
                 <>
-                  <div id="delete">
+                  <div id="delete" onClick={handleDelete}>
                     <MdDelete />
                     <p>Delete</p>
                   </div>
