@@ -76,6 +76,7 @@ const Form = ({
     });
     setComments(tmp);
     if (setIsAdding) setIsAdding(false);
+    e.currentTarget.scrollIntoView({ behavior: "smooth" });
   };
 
   return (

@@ -13,9 +13,11 @@ function App() {
 
   return (
     <div id="app">
-      <p>{comments.length}</p>
       {comments.map((comment) => (
-        <Comment comment={comment} key={comment.content} />
+        <Comment
+          comment={comment}
+          key={comment.content + Math.random() * 100}
+        />
       ))}
       <Form type="SEND" replyTo={-1} />
     </div>
