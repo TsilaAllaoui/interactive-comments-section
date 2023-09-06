@@ -16,10 +16,14 @@ const ModalBox = ({
   return (
     <div id="modal" onClick={setIsDeleting}>
       <div id="container">
-        <h1>Delete comment?</h1>
+        <h1>Delete comment</h1>
+        <p>
+          Are you sure you want to delete this comment? This will remove the
+          comment and can't be undone.
+        </p>
         <div id="buttons">
-          <button onClick={deleteComment}>Yes</button>
-          <button onClick={setIsDeleting}>No</button>
+          <button onClick={setIsDeleting}>NO, CANCEL</button>
+          <button onClick={deleteComment}>YES, DELETE</button>
         </div>
       </div>
     </div>

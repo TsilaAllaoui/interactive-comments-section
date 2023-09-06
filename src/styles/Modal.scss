@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.765);
+  background-color: rgba(0, 0, 0, 0.465);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,16 +17,22 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 5px grey;
+    align-items: flex-start;
+    padding: 1rem;
 
     h1 {
-      font-size: 1.25rem;
-      border-bottom: solid 1.5px grey;
+      font-size: 0.9rem;
       display: flex;
       justify-content: center;
       align-items: center;
       margin: 0;
-      padding: 1rem;
       font-family: "Inter";
+      height: 1rem;
+    }
+
+    p {
+      font-size: 0.7rem;
+      color: grey;
     }
 
     #buttons {
@@ -35,9 +41,9 @@
       align-items: center;
       gap: 1rem;
       flex-grow: 1;
+      width: 100%;
 
       button {
-        width: 4rem;
         height: 2rem;
         border: none;
         box-shadow: 0 0 5px grey;
@@ -46,13 +52,16 @@
         border-radius: 0.25rem;
         font-weight: 700;
         letter-spacing: 0.1rem;
+        font-size: 0.65rem;
         cursor: pointer;
 
         &:first-child {
           background-color: rgba(190, 20, 20, 0.748);
+          flex-grow: 0.5;
         }
 
         &:last-child {
+          flex-grow: 0.5;
           background-color: rgba(20, 20, 190, 0.748);
         }
 

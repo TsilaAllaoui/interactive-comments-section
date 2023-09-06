@@ -14,10 +14,7 @@ function App() {
   return (
     <div id="app">
       {comments.map((comment) => (
-        <Comment
-          comment={comment}
-          key={comment.content + Math.random() * 100}
-        />
+        <Comment comment={comment} key={comment.content} />
       ))}
       <Form type="SEND" replyTo={-1} />
     </div>

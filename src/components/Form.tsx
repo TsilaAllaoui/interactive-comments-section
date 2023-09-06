@@ -37,46 +37,80 @@ const Form = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (replyTo < 0) {
-      let a = {
-        id: Math.floor(Math.random() * 1000),
-        content: e.currentTarget.usercomment.value,
-        createdAt: getDate(),
-        score: 0,
-        user: user,
-      };
-      const b = [...comments, a];
-      console.log(b);
-      setComments(b);
-      return;
-    }
-    const tmp = comments;
-    tmp.forEach((comment) => {
-      if (comment.id == replyTo) {
-        comment.replies?.push({
-          id: Math.floor(Math.random() * 1000),
-          content: e.currentTarget.usercomment.value,
-          createdAt: getDate(),
-          score: 0,
-          user: user,
-        });
-      } else {
-        comment.replies?.forEach((c) => {
-          if (c.id == replyTo) {
+
+    let found = false;
+    comments.forEach((c) => {
+      if (c.id == replyTo) {
+        found = true;
+      }
+    });
+
+    // If the comment is in the replies of another comment
+    if (!found) {
+      const tmp = comments;
+      tmp.forEach((c) => {
+        c.replies?.forEach((r) => {
+          if (r.id == replyTo) {
             c.replies?.push({
               id: Math.floor(Math.random() * 1000),
-              content: e.currentTarget.usercomment.value,
+              content:
+                "@" + r.user.username + " " + e.currentTarget.usercomment.value,
               createdAt: getDate(),
               score: 0,
               user: user,
             });
           }
         });
+      });
+      setComments([...tmp]);
+      console.log(tmp);
+      if (setIsAdding) setIsAdding(false);
+      e.currentTarget.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // If the comment is in the main line of discussion
+    if (replyTo < 0 || found) {
+      if (replyTo < 0) {
+        let a = {
+          id: Math.floor(Math.random() * 1000),
+          content: e.currentTarget.usercomment.value,
+          createdAt: getDate(),
+          score: 0,
+          user: user,
+        };
+        const b = [...comments, a];
+        console.log(b);
+        setComments(b);
+        return;
       }
-    });
-    setComments(tmp);
-    if (setIsAdding) setIsAdding(false);
-    e.currentTarget.scrollIntoView({ behavior: "smooth" });
+      const tmp = comments;
+      tmp.forEach((comment) => {
+        if (comment.id == replyTo) {
+          comment.replies?.push({
+            id: Math.floor(Math.random() * 1000),
+            content: e.currentTarget.usercomment.value,
+            createdAt: getDate(),
+            score: 0,
+            user: user,
+          });
+        } else {
+          comment.replies?.forEach((c) => {
+            if (c.id == replyTo) {
+              c.replies?.push({
+                id: Math.floor(Math.random() * 1000),
+                content: e.currentTarget.usercomment.value,
+                createdAt: getDate(),
+                score: 0,
+                user: user,
+              });
+            }
+          });
+        }
+      });
+      setComments(tmp);
+      if (setIsAdding) setIsAdding(false);
+      e.currentTarget.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
