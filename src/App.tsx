@@ -15,7 +15,7 @@ function App() {
     <div id="app">
       <p>{comments.length}</p>
       {comments.map((comment) => (
-        <Comment comment={comment} key={comment.id} />
+        <Comment comment={comment} key={comment.content} />
       ))}
       <Form type="SEND" replyTo={-1} />
     </div>

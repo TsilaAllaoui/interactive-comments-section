@@ -6,22 +6,41 @@ import { UserContext } from "../contexts/user";
 import { IComment } from "../interfaces/Comment";
 import "../styles/Comment.scss";
 import Form from "./Form";
+import { CommentsContext } from "../contexts/comments";
 
 function Comment({ comment }: { comment: IComment }) {
   const userName = useContext(UserContext).username;
+  const { comments, setComments } = useContext(CommentsContext);
   const [isAdding, setIsAdding] = useState(false);
 
   const handleReply = (_e: React.MouseEvent<HTMLDivElement>) => {
     setIsAdding(!isAdding);
   };
 
+  const handleReactAction = (add: boolean) => {
+    let tmp = comments;
+    const appendix = add ? 1 : -1;
+    tmp.forEach((c) => {
+      if (c.id == comment.id) {
+        c.score += appendix;
+      } else {
+        c.replies?.forEach((_c) => {
+          if (_c.id == comment.id) {
+            _c.score += appendix;
+          }
+        });
+      }
+    });
+    setComments([...tmp]);
+  };
+
   return (
     <div className="comment-container">
       <div className="comment">
         <div id="reactions">
-          <BiPlus id="plus" />
+          <BiPlus id="plus" onClick={() => handleReactAction(true)} />
           <p>{comment.score}</p>
-          <BiMinus id="minus" />
+          <BiMinus id="minus" onClick={() => handleReactAction(false)} />
         </div>
         <div id="main">
           <div id="infos">
@@ -63,7 +82,7 @@ function Comment({ comment }: { comment: IComment }) {
           <div className="line"></div>
           <div id="replies">
             {comment.replies?.map((reply) => (
-              <Comment comment={reply} key={reply.id} />
+              <Comment comment={reply} key={reply.content} />
             ))}
           </div>
         </div>
