@@ -1,0 +1,125 @@
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1.5rem;
+
+  .comment {
+    display: flex;
+    justify-content: center;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 5px rgba(128, 128, 128, 0.297);
+    width: 100%;
+    gap: 1rem;
+
+    #reactions {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(128, 128, 128, 0.2);
+      min-width: 2.5rem;
+      margin: 1rem;
+      border-radius: 0.5rem;
+      font-weight: 900;
+
+      #plus,
+      #minus {
+        color: grey;
+        font-size: 1.25rem;
+        cursor: pointer;
+      }
+    }
+
+    #main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+
+      #infos {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1rem;
+        margin-right: 1rem;
+
+        #user {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+          }
+
+          p {
+            &:first-of-type {
+              font-weight: 700;
+              cursor: pointer;
+            }
+            &:nth-of-type(2) {
+              color: grey;
+              font-size: 0.85rem;
+            }
+          }
+        }
+
+        #actions {
+          display: flex;
+          gap: 0.75rem;
+
+          #reply,
+          #edit {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: rgb(39, 39, 181);
+            font-weight: 700;
+            cursor: pointer;
+          }
+
+          #delete {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: rgba(255, 0, 0, 0.774);
+            font-weight: 700;
+            cursor: pointer;
+          }
+        }
+      }
+
+      #content {
+        font-size: 0.95rem;
+        color: grey;
+        width: 100%;
+      }
+    }
+  }
+
+  #replies-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    width: 100%;
+
+    .line {
+      width: 10%;
+      border-right: solid 2px grey;
+    }
+
+    #replies {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      width: 75%;
+      gap: 1.5rem;
+    }
+  }
+}
