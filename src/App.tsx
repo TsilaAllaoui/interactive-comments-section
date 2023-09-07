@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import "./App.scss";
 import Comment from "./components/Comment";
 import Form from "./components/Form";

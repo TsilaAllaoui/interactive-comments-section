@@ -64,7 +64,6 @@ const Form = ({
         });
       });
       setComments([...tmp]);
-      // if (setIsAdding) setIsAdding(false);
     }
 
     // If the comment is in the main line of discussion
