@@ -5,6 +5,12 @@
   width: 100%;
   gap: 1.5rem;
 
+  @media (max-width: 416px) {
+    width: 98%;
+    margin: 0 auto;
+    gap: 0.75rem;
+  }
+
   .comment {
     display: flex;
     justify-content: center;
@@ -12,6 +18,14 @@
     box-shadow: 0 0 5px rgba(128, 128, 128, 0.297);
     width: 100%;
     gap: 1rem;
+
+    @media (max-width: 416px) {
+      flex-direction: column-reverse;
+      box-shadow: 0 0 5px 2px rgba(128, 128, 128, 0.297);
+      position: relative;
+      gap: 0;
+      width: 95%;
+    }
 
     #reactions {
       user-select: none;
@@ -26,11 +40,27 @@
       font-weight: 900;
       padding: 0.5rem 0;
 
+      @media (max-width: 416px) {
+        flex-direction: column-reverse;
+        width: 30%;
+        height: 1rem;
+        flex-direction: row;
+        gap: 0.75rem;
+
+        p {
+          font-size: 0.85rem;
+        }
+      }
+
       #plus,
       #minus {
         color: grey;
         font-size: 1.25rem;
         cursor: pointer;
+
+        @media (max-width: 416px) {
+          font-size: 1rem;
+        }
       }
     }
 
@@ -40,6 +70,10 @@
       justify-content: center;
       flex-grow: 1;
 
+      @media (max-width: 416px) {
+        gap: 0.5rem;
+      }
+
       #infos {
         display: flex;
         align-items: center;
@@ -48,25 +82,48 @@
         margin-top: 1rem;
         margin-right: 1rem;
 
+        @media (max-width: 416px) {
+          margin-top: 0;
+          padding-top: 0.5rem;
+        }
+
         #user {
           display: flex;
           align-items: center;
           gap: 1rem;
 
+          @media (max-width: 416px) {
+            margin: 0 1rem;
+            height: 2rem;
+          }
+
           img {
             width: 40px;
             height: 40px;
             cursor: pointer;
+
+            @media (max-width: 416px) {
+              width: 35px;
+              height: 35px;
+            }
           }
 
           p {
             &:first-of-type {
               font-weight: 700;
               cursor: pointer;
+
+              @media (max-width: 416px) {
+                font-size: 0.85rem;
+              }
             }
             &:nth-of-type(2) {
               color: grey;
               font-size: 0.85rem;
+
+              @media (max-width: 416px) {
+                font-size: 0.5rem;
+              }
             }
           }
         }
@@ -74,6 +131,14 @@
         #actions {
           display: flex;
           gap: 0.75rem;
+
+          @media (max-width: 416px) {
+            position: absolute;
+            bottom: 0.65rem;
+            left: 100%;
+            transform: translateX(-120%);
+            font-size: 0.85rem;
+          }
 
           #reply,
           #edit {
@@ -83,6 +148,10 @@
             color: rgb(39, 39, 181);
             font-weight: 700;
             cursor: pointer;
+
+            @media (max-width: 416px) {
+              font-size: 0.75rem;
+            }
           }
 
           #delete {
@@ -92,6 +161,10 @@
             color: rgba(255, 0, 0, 0.774);
             font-weight: 700;
             cursor: pointer;
+
+            @media (max-width: 416px) {
+              font-size: 0.75rem;
+            }
           }
         }
       }
@@ -101,11 +174,29 @@
         color: grey;
         width: 100%;
 
+        @media (max-width: 416px) {
+          display: flex;
+          justify-content: unset;
+          width: 90%;
+          margin: 0 auto;
+          font-size: 0.8rem;
+
+          p {
+            margin: 0;
+            margin-top: 1rem;
+          }
+        }
+
         form {
           display: flex;
           justify-content: space-between;
           gap: 1rem;
           width: 95%;
+
+          @media (max-width: 416px) {
+            flex-direction: column;
+            gap: 0;
+          }
 
           textarea {
             min-height: 4rem;
@@ -115,6 +206,11 @@
             border-radius: 0.5rem;
             height: 4rem;
             margin-bottom: 1rem;
+
+            @media (max-width: 416px) {
+              min-height: 2rem;
+              width: 85%;
+            }
 
             &:focus,
             &:focus-visible {
@@ -133,6 +229,12 @@
             margin-right: 0.5rem;
             cursor: pointer;
 
+            @media (max-width: 416px) {
+              height: 1.75rem;
+              width: 3rem;
+              font-size: 0.75rem;
+            }
+
             &:hover {
               opacity: 0.75;
             }
@@ -148,9 +250,19 @@
     margin-top: 1.5rem;
     width: 100%;
 
+    @media (max-width: 416px) {
+      margin-top: 0;
+      justify-content: unset;
+      margin-left: 0.5rem;
+    }
+
     .line {
       width: 10%;
       border-right: solid 2px grey;
+
+      @media (max-width: 416px) {
+        width: 5%;
+      }
     }
 
     #replies {
@@ -160,6 +272,11 @@
       justify-content: space-between;
       width: 75%;
       gap: 1.5rem;
+
+      @media (max-width: 416px) {
+        gap: 0;
+        width: 100%;
+      }
     }
   }
 }

@@ -37,6 +37,8 @@ const Form = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.currentTarget.reset();
+    const val = e.currentTarget.usercomment.value;
 
     let found = false;
     comments.forEach((c) => {
@@ -53,8 +55,7 @@ const Form = ({
           if (r.id == replyTo) {
             c.replies?.push({
               id: Math.floor(Math.random() * 1000),
-              content:
-                "@" + r.user.username + " " + e.currentTarget.usercomment.value,
+              content: "@" + r.user.username + " " + val,
               createdAt: getDate(),
               score: 0,
               user: user,
@@ -63,9 +64,7 @@ const Form = ({
         });
       });
       setComments([...tmp]);
-      console.log(tmp);
-      if (setIsAdding) setIsAdding(false);
-      e.currentTarget.scrollIntoView({ behavior: "smooth" });
+      // if (setIsAdding) setIsAdding(false);
     }
 
     // If the comment is in the main line of discussion
@@ -73,13 +72,12 @@ const Form = ({
       if (replyTo < 0) {
         let a = {
           id: Math.floor(Math.random() * 1000),
-          content: e.currentTarget.usercomment.value,
+          content: val,
           createdAt: getDate(),
           score: 0,
           user: user,
         };
         const b = [...comments, a];
-        console.log(b);
         setComments(b);
         return;
       }
@@ -88,7 +86,7 @@ const Form = ({
         if (comment.id == replyTo) {
           comment.replies?.push({
             id: Math.floor(Math.random() * 1000),
-            content: e.currentTarget.usercomment.value,
+            content: val,
             createdAt: getDate(),
             score: 0,
             user: user,
@@ -98,7 +96,7 @@ const Form = ({
             if (c.id == replyTo) {
               c.replies?.push({
                 id: Math.floor(Math.random() * 1000),
-                content: e.currentTarget.usercomment.value,
+                content: val,
                 createdAt: getDate(),
                 score: 0,
                 user: user,
@@ -109,14 +107,17 @@ const Form = ({
       });
       setComments(tmp);
       if (setIsAdding) setIsAdding(false);
-      e.currentTarget.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <form id="insert" onSubmit={handleSubmit}>
       <img src={user.image} alt={user.username} />
-      <textarea name="usercomment" placeholder="Add a comment..."></textarea>
+      <textarea
+        name="usercomment"
+        placeholder="Add a comment..."
+        id="commenttext"
+      ></textarea>
       <button type="submit">{type}</button>
     </form>
   );

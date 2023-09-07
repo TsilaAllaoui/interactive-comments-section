@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow-x: hidden;
 
   * {
     font-family: "Inter";
@@ -20,4 +21,10 @@
   width: 50%;
   gap: 1.5rem;
   padding-bottom: 2rem;
+
+  @media (max-width: 416px) {
+    margin-top: 1rem;
+    width: 100%;
+    gap: 1rem;
+  }
 }

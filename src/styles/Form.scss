@@ -17,11 +17,23 @@
   min-height: 6rem;
   border-radius: 0.5rem;
 
+  @media (max-width: 416px) {
+    position: relative;
+    min-height: 5rem;
+    margin: 0 auto;
+    width: 90%;
+  }
+
   img {
     width: 35px;
     height: 35px;
     width: 5%;
     margin-left: 0.5rem;
+
+    @media (max-width: 416px) {
+      width: 35px;
+      height: 35px;
+    }
   }
 
   textarea {
@@ -30,6 +42,13 @@
     border-radius: 0.25rem;
     padding: 1rem;
     border: solid 1.5px grey;
+    resize: none;
+
+    @media (max-width: 416px) {
+      margin: 0 0.25rem;
+      margin-right: 0.5rem;
+      min-height: 3rem;
+    }
 
     &:focus,
     &:focus-visible {
@@ -47,6 +66,15 @@
     border-radius: 0.5rem;
     margin-right: 0.5rem;
     cursor: pointer;
+
+    @media (max-width: 416px) {
+      height: 1.75rem;
+      width: 2.5rem;
+      font-size: 0.5rem;
+      position: absolute;
+      bottom: 0.5rem;
+      left: 0.5rem;
+    }
 
     &:hover {
       opacity: 0.75;

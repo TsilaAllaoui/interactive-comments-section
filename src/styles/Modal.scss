@@ -9,6 +9,10 @@
   justify-content: center;
   align-items: center;
 
+  @media (max-width: 416px) {
+    z-index: 3;
+  }
+
   #container {
     background-color: white;
     border-radius: 0.5rem;
@@ -33,6 +37,10 @@
     p {
       font-size: 0.7rem;
       color: grey;
+
+      @media (max-width: 416px) {
+        font-size: 0.8rem;
+      }
     }
 
     #buttons {
@@ -55,14 +63,19 @@
         font-size: 0.65rem;
         cursor: pointer;
 
+        @media (max-width: 416px) {
+          height: 2.5rem;
+          font-size: 0.75rem;
+        }
+
         &:first-child {
-          background-color: rgba(190, 20, 20, 0.748);
+          background-color: rgba(79, 79, 85, 0.748);
           flex-grow: 0.5;
         }
 
         &:last-child {
           flex-grow: 0.5;
-          background-color: rgba(20, 20, 190, 0.748);
+          background-color: rgba(190, 20, 20, 0.748);
         }
 
         &:hover {

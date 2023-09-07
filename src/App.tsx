@@ -7,14 +7,10 @@ import { CommentsContext } from "./contexts/comments";
 function App() {
   const comments = useContext(CommentsContext).comments;
 
-  useEffect(() => {
-    console.log("changed");
-  }, [comments]);
-
   return (
     <div id="app">
       {comments.map((comment) => (
-        <Comment comment={comment} key={comment.content} />
+        <Comment comment={comment} key={comment.id} />
       ))}
       <Form type="SEND" replyTo={-1} />
     </div>

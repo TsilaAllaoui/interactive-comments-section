@@ -6,9 +6,11 @@ const ModalBox = ({
   deleteComment,
 }: {
   setIsDeleting: (b: any) => void;
-  deleteComment: (a: any) => void;
+  deleteComment: () => void;
 }) => {
   useEffect(() => {
+    const e = document.querySelector("#modal") as HTMLElement;
+    e.scrollIntoView({ behavior: "smooth" });
     const root = document.querySelector("#root") as HTMLElement;
     root.style.overflow = "hidden";
   }, []);
@@ -23,7 +25,16 @@ const ModalBox = ({
         </p>
         <div id="buttons">
           <button onClick={setIsDeleting}>NO, CANCEL</button>
-          <button onClick={deleteComment}>YES, DELETE</button>
+          <button
+            onClick={() => {
+              const root = document.querySelector("#root") as HTMLElement;
+              root.style.overflow = "auto";
+              setIsDeleting(false);
+              deleteComment();
+            }}
+          >
+            YES, DELETE
+          </button>
         </div>
       </div>
     </div>

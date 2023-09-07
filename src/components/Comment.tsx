@@ -53,7 +53,6 @@ function Comment({ comment }: { comment: IComment }) {
           if (_c.id == comment.id) {
             const pos = c.replies?.findIndex((a) => a.id == _c.id);
             c.replies = c.replies?.filter((_a, i) => i != pos);
-            console.log(c.replies);
           }
         });
       }
@@ -66,6 +65,7 @@ function Comment({ comment }: { comment: IComment }) {
   };
   const handleEdit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(editValue);
     let tmp = comments;
     tmp.forEach((c) => {
       if (c.id == comment.id) {
@@ -78,15 +78,15 @@ function Comment({ comment }: { comment: IComment }) {
         });
       }
     });
-    setEditValue("");
-    e.currentTarget.scrollIntoView({ behavior: "smooth" });
     setComments([...tmp]);
+    setEditValue("");
+    setIsEdited(false);
   };
 
   useEffect(() => {
     if (!isDeleting) {
       const root = document.querySelector("#root") as HTMLElement;
-      root.style.overflow = "scroll";
+      root.style.overflow = "auto";
     }
   }, [isDeleting]);
 
@@ -121,8 +121,8 @@ function Comment({ comment }: { comment: IComment }) {
                   <div
                     id="edit"
                     onClick={() => {
-                      setIsEdited(true);
                       setEditValue(comment.content);
+                      setIsEdited(true);
                     }}
                   >
                     <MdEdit />
@@ -143,6 +143,7 @@ function Comment({ comment }: { comment: IComment }) {
             ) : (
               <form onSubmit={handleEdit}>
                 <textarea
+                  style={{ resize: "none" }}
                   name="usercommentedit"
                   placeholder={comment.content}
                   value={editValue}
@@ -162,7 +163,7 @@ function Comment({ comment }: { comment: IComment }) {
           <div className="line"></div>
           <div id="replies">
             {comment.replies?.map((reply) => (
-              <Comment comment={reply} key={reply.content} />
+              <Comment comment={reply} key={reply.id} />
             ))}
           </div>
         </div>
